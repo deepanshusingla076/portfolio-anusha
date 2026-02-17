@@ -1,0 +1,125 @@
+import { useState } from "react";
+import { Phone, Mail, Linkedin, Github, ArrowUpRight } from "lucide-react";
+import AnimatedSection from "./AnimatedSection";
+import { motion } from "framer-motion";
+
+const contactLinks = [
+  { icon: Phone, label: "+91-9588575578", href: "tel:+919588575578" },
+  { icon: Mail, label: "anushajindal1940@gmail.com", href: "mailto:anushajindal1940@gmail.com" },
+  { icon: Linkedin, label: "LinkedIn", href: "https://www.linkedin.com/in/anusha-jindal-36959028a" },
+  { icon: Github, label: "GitHub", href: "https://github.com/anushajindal2046" },
+];
+
+const ContactSection = () => {
+  const [form, setForm] = useState({ name: "", email: "", message: "" });
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    window.open(`mailto:anushajindal1940@gmail.com?subject=Portfolio Contact from ${form.name}&body=${encodeURIComponent(form.message)}%0A%0AFrom: ${form.email}`);
+  };
+
+  return (
+    <section id="contact" className="py-10 lg:py-14 border-t border-border relative">
+      <div className="absolute top-8 left-6 lg:left-12 text-muted-foreground/20 text-xs font-mono">+</div>
+      <div className="absolute top-8 right-6 lg:right-12 text-muted-foreground/20 text-xs font-mono">+</div>
+
+      <div className="max-w-[1400px] mx-auto px-6 lg:px-12">
+        <div className="grid lg:grid-cols-2 gap-16 lg:gap-24">
+          {/* Left */}
+          <div>
+            <AnimatedSection>
+              <p className="text-[10px] tracking-[0.3em] text-muted-foreground font-medium uppercase mb-4">
+                04 — Get In Touch
+              </p>
+              <h2 className="font-display text-4xl sm:text-5xl lg:text-6xl font-bold text-foreground mb-6">
+               Let’s Connect &
+                <br />
+               <span>Collaborate</span>
+              </h2>
+            </AnimatedSection>
+
+            <AnimatedSection delay={0.1}>
+              <p className="text-sm text-muted-foreground leading-relaxed mb-10 max-w-md">
+                I'm always open to discussing new projects, creative ideas, or opportunities to be part of your vision.
+              </p>
+
+              <div className="space-y-0 border-t border-border mb-10">
+                {contactLinks.map(({ icon: Icon, label, href }) => (
+                  <a
+                    key={label}
+                    href={href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center justify-between py-4 border-b border-border group hover:bg-card/50 transition-colors duration-300 px-2"
+                  >
+                    <div className="flex items-center gap-3">
+                      <Icon size={16} strokeWidth={1.5} className="text-accent" />
+                      <span className="text-sm text-muted-foreground group-hover:text-foreground transition-colors duration-300">{label}</span>
+                    </div>
+                    <ArrowUpRight size={14} className="text-muted-foreground/50 group-hover:text-foreground transition-all duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+                  </a>
+                ))}
+              </div>
+
+              <a
+                href="#"
+                className="inline-flex items-center gap-2 px-8 py-3.5 bg-foreground text-primary-foreground text-[11px] font-semibold tracking-[0.15em] uppercase hover:opacity-90 transition-opacity"
+              >
+                Download Resume
+              </a>
+            </AnimatedSection>
+          </div>
+
+          {/* Right — form */}
+          <AnimatedSection delay={0.15}>
+            <form onSubmit={handleSubmit} className="space-y-6 lg:pt-16">
+              <div>
+                <label className="text-[10px] tracking-[0.2em] text-muted-foreground uppercase block mb-2">Name</label>
+                <input
+                  type="text"
+                  required
+                  value={form.name}
+                  onChange={(e) => setForm({ ...form, name: e.target.value })}
+                  className="w-full bg-transparent border-b border-border py-3 text-sm text-foreground placeholder:text-muted-foreground/40 focus:outline-none focus:border-foreground transition-colors duration-500"
+                  placeholder="What's your name?"
+                />
+              </div>
+              <div>
+                <label className="text-[10px] tracking-[0.2em] text-muted-foreground uppercase block mb-2">Email</label>
+                <input
+                  type="email"
+                  required
+                  value={form.email}
+                  onChange={(e) => setForm({ ...form, email: e.target.value })}
+                  className="w-full bg-transparent border-b border-border py-3 text-sm text-foreground placeholder:text-muted-foreground/40 focus:outline-none focus:border-foreground transition-colors duration-500"
+                  placeholder="your@email.com"
+                />
+              </div>
+              <div>
+                <label className="text-[10px] tracking-[0.2em] text-muted-foreground uppercase block mb-2">Message</label>
+                <textarea
+                  required
+                  rows={4}
+                  value={form.message}
+                  onChange={(e) => setForm({ ...form, message: e.target.value })}
+                  className="w-full bg-transparent border-b border-border py-3 text-sm text-foreground placeholder:text-muted-foreground/40 focus:outline-none focus:border-foreground transition-colors duration-500 resize-none"
+                  placeholder="Tell me about your project..."
+                />
+              </div>
+              <motion.button
+                whileHover={{ scale: 1.01 }}
+                whileTap={{ scale: 0.99 }}
+                type="submit"
+                className="w-full py-4 bg-foreground text-primary-foreground text-[11px] font-semibold tracking-[0.2em] uppercase hover:opacity-90 transition-opacity"
+              >
+                Send Message
+              </motion.button>
+            </form>
+          </AnimatedSection>
+        </div>
+      </div>
+    </section>
+  );
+};
+
+export default ContactSection;
