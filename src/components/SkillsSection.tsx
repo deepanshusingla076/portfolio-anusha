@@ -11,7 +11,7 @@ const skillCategories = [
 ];
 
 const SkillsSection = () => (
-  <section id="skills" className="py-10 lg:py-14 border-t border-border relative">
+  <section id="skills" className="py-16 lg:py-20 border-t border-border relative">
     <div className="absolute top-8 left-6 lg:left-12 text-muted-foreground/20 text-xs font-mono">+</div>
     <div className="absolute top-8 right-6 lg:right-12 text-muted-foreground/20 text-xs font-mono">+</div>
 
@@ -20,11 +20,11 @@ const SkillsSection = () => (
         <p className="text-[10px] tracking-[0.3em] text-muted-foreground font-medium uppercase mb-4">
           03 — Technical Skills
         </p>
-<h2 className="font-display text-4xl sm:text-5xl lg:text-6xl font-bold text-foreground mb-16">
-  Tools &
-  <br />
-  <span>Technologies</span>
-</h2>
+        <h2 className="font-display text-4xl sm:text-5xl lg:text-6xl font-bold text-foreground mb-16">
+          Tools &
+          <br />
+          <span>Technologies</span>
+        </h2>
       </AnimatedSection>
 
       <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-px bg-border">

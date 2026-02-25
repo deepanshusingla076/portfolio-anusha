@@ -33,77 +33,103 @@ const projects = [
 ];
 
 const ProjectsSection = () => (
-  <section id="projects" className="py-10 lg:py-14 border-t border-border relative">
+  <section id="projects" className="py-16 lg:py-20 border-t border-border relative">
     <div className="absolute top-8 left-6 lg:left-12 text-muted-foreground/20 text-xs font-mono">+</div>
     <div className="absolute top-8 right-6 lg:right-12 text-muted-foreground/20 text-xs font-mono">+</div>
 
     <div className="max-w-[1400px] mx-auto px-6 lg:px-12">
       <AnimatedSection>
-        <div className="mb-16">
-          <p className="text-[10px] tracking-[0.3em] text-muted-foreground font-medium uppercase mb-4">
-            02 — Featured Projects
+        <div className="mb-10 lg:mb-14 flex items-end justify-between gap-6 flex-wrap">
+          <div>
+            <p className="text-[10px] tracking-[0.3em] text-muted-foreground font-medium uppercase mb-4">
+              02 — Featured Projects
+            </p>
+            <h2 className="font-display text-4xl sm:text-5xl lg:text-6xl font-bold text-foreground">
+              Real-World
+              <br />
+              <span>Applications</span>
+            </h2>
+          </div>
+          <p className="max-w-md text-xs sm:text-sm text-muted-foreground leading-relaxed">
+            A selection of backend-heavy and full stack projects. More projects and live previews can be added later
+            with images as the portfolio grows.
           </p>
-          <h2 className="font-display text-4xl sm:text-5xl lg:text-6xl font-bold text-foreground">
-            Real-World
-            <br />
-            <span>Applications</span>
-          </h2>
         </div>
       </AnimatedSection>
 
-      <div className="space-y-0 border-t border-border">
+      <div className="grid md:grid-cols-2 xl:grid-cols-3 gap-6 lg:gap-8">
         {projects.map((project, i) => (
-          <AnimatedSection key={project.title} delay={i * 0.1}>
-            <motion.div
-              className="border-b border-border py-10 lg:py-14 group cursor-pointer"
-              whileHover={{ backgroundColor: "hsl(0 0% 5%)" }}
-              transition={{ duration: 0.4 }}
+          <AnimatedSection key={project.title} delay={i * 0.08}>
+            <motion.article
+              whileHover={{ y: -6, scale: 1.01 }}
+              transition={{ type: "spring", stiffness: 260, damping: 24 }}
+              className="group h-full rounded-lg border border-border bg-card/60 hover:bg-card/90 overflow-hidden flex flex-col"
             >
-              <div className="grid lg:grid-cols-12 gap-6 lg:gap-8 items-start">
-                <div className="lg:col-span-1">
-                  <span className="text-xs text-muted-foreground font-mono">{project.num}</span>
-                </div>
-
-                <div className="lg:col-span-4">
-                  <h3 className="font-display text-2xl lg:text-3xl font-bold text-foreground group-hover:text-accent transition-colors duration-500">
-                    {project.title}
-                  </h3>
-                  <p className="text-xs text-muted-foreground mt-1 tracking-wide">{project.subtitle}</p>
-                </div>
-
-                <div className="lg:col-span-4">
-                  <p className="text-sm text-muted-foreground leading-relaxed mb-3">
-                    {project.description}
-                  </p>
-                  <ul className="space-y-1">
-                    {project.highlights.map((h) => (
-                      <li key={h} className="text-xs text-muted-foreground/70 flex items-start gap-2">
-                        <span className="w-[3px] h-[3px] rounded-full bg-accent mt-1.5 shrink-0" />
-                        {h}
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-
-                <div className="lg:col-span-3 flex flex-col items-start lg:items-end gap-4">
-                  <div className="flex flex-wrap gap-1.5">
-                    {project.tech.map((t) => (
-                      <span key={t} className="px-2.5 py-1 text-[10px] tracking-wider border border-border text-muted-foreground uppercase">
-                        {t}
-                      </span>
-                    ))}
-                  </div>
-                  <div className="flex gap-3">
-                    <a href={project.github} target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-foreground transition-colors duration-300">
-                      <Github size={16} strokeWidth={1.5} />
-                    </a>
-                    <a href="#" className="text-muted-foreground hover:text-foreground transition-colors duration-300">
-                      <ArrowUpRight size={16} strokeWidth={1.5} />
-                    </a>
-                  </div>
+              <div className="px-5 pt-5 pb-4 flex items-center justify-between gap-2 border-b border-border/60">
+                <span className="text-[10px] font-mono tracking-[0.2em] text-muted-foreground">
+                  {project.num.padStart(2, "0")}
+                </span>
+                <div className="flex gap-2">
+                  <span className="h-1 w-8 rounded-full bg-accent/70 group-hover:w-10 transition-all duration-500" />
+                  <span className="h-1 w-4 rounded-full bg-accent/30 group-hover:w-6 transition-all duration-500" />
                 </div>
               </div>
-            </motion.div>
+
+              <div className="px-5 pt-4 pb-5 flex-1 flex flex-col gap-3">
+                <div>
+                  <h3 className="font-display text-xl lg:text-2xl font-semibold text-foreground mb-1 group-hover:text-accent transition-colors duration-500">
+                    {project.title}
+                  </h3>
+                  <p className="text-[11px] text-muted-foreground uppercase tracking-[0.18em]">
+                    {project.subtitle}
+                  </p>
+                </div>
+
+                <p className="text-xs sm:text-sm text-muted-foreground leading-relaxed">
+                  {project.description}
+                </p>
+
+                <ul className="space-y-1.5 mt-1">
+                  {project.highlights.map((h) => (
+                    <li key={h} className="text-[11px] text-muted-foreground/80 flex items-start gap-2">
+                      <span className="mt-1 h-[5px] w-[5px] rounded-full bg-accent shrink-0" />
+                      {h}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+
+              <div className="px-5 pb-4 pt-3 border-t border-border/60 flex flex-wrap items-center justify-between gap-3">
+                <div className="flex flex-wrap gap-1.5">
+                  {project.tech.map((t) => (
+                    <span
+                      key={t}
+                      className="px-2.5 py-1 rounded-full text-[10px] tracking-[0.14em] border border-border/70 text-secondary-foreground uppercase group-hover:border-accent/70 transition-colors duration-300"
+                    >
+                      {t}
+                    </span>
+                  ))}
+                </div>
+                <div className="flex gap-3">
+                  <a
+                    href={project.github}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-1 text-[11px] text-muted-foreground hover:text-foreground transition-colors duration-300"
+                  >
+                    <Github size={14} strokeWidth={1.5} />
+                    <span className="hidden sm:inline">Code</span>
+                  </a>
+                  <button
+                    type="button"
+                    className="inline-flex items-center gap-1 text-[11px] text-muted-foreground/80 cursor-default"
+                  >
+                    <ArrowUpRight size={14} strokeWidth={1.5} />
+                    <span className="hidden sm:inline">Preview soon</span>
+                  </button>
+                </div>
+              </div>
+            </motion.article>
           </AnimatedSection>
         ))}
       </div>

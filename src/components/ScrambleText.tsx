@@ -76,7 +76,7 @@ export default function ScrambleText({ text, speed = 30, charSet = defaultCharSe
       if (rafRef.current) cancelAnimationFrame(rafRef.current);
       rafRef.current = null;
     };
-  }, [text, speed, charSet, startDelay]);
+  }, [text, revealSpeed, charSet, startDelay]);
 
   // Render a hidden reserve span (visibility hidden) to lock layout, and overlay scrambled text
   return (

@@ -1,128 +1,114 @@
 import { motion } from "framer-motion";
-import { ArrowDownRight, Github, Linkedin, Mail } from "lucide-react";
-import heroBg from "@/assets/hero-bg.jpg";
+import { ArrowDown, Github, Linkedin, Mail } from "lucide-react";
 import ScrambleText from "./ScrambleText";
 
-const HeroSection = () => {
-  return (
-    <section id="home" className="relative min-h-screen flex items-start pb-2 lg:pb-2 overflow-hidden">
-      {/* Background */}
-      <div className="absolute inset-0">
-        <img src={heroBg} alt="" className="w-full h-full object-cover opacity-20" />
-        <div className="absolute inset-0 bg-gradient-to-t from-background via-background/90 to-background/40" />
-      </div>
+const HeroSection = () => (
+    <section
+        id="home"
+        className="relative min-h-screen flex flex-col justify-center py-32 border-b border-border overflow-hidden"
+    >
+        {/* Corner marks */}
+        <div className="absolute top-8 left-6 lg:left-12 text-muted-foreground/20 text-xs font-mono">+</div>
+        <div className="absolute top-8 right-6 lg:right-12 text-muted-foreground/20 text-xs font-mono">+</div>
+        <div className="absolute bottom-8 left-6 lg:left-12 text-muted-foreground/20 text-xs font-mono">+</div>
+        <div className="absolute bottom-8 right-6 lg:right-12 text-muted-foreground/20 text-xs font-mono">+</div>
 
-      {/* Grid decorations */}
-      <div className="absolute inset-0 pointer-events-none">
-        <div className="absolute top-20 left-6 lg:left-12 text-muted-foreground/20 text-xs font-mono">+</div>
-        <div className="absolute top-20 right-6 lg:right-12 text-muted-foreground/20 text-xs font-mono">+</div>
-        <div className="absolute bottom-20 left-6 lg:left-12 text-muted-foreground/20 text-xs font-mono">+</div>
-        <div className="absolute bottom-20 right-6 lg:right-12 text-muted-foreground/20 text-xs font-mono">+</div>
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-muted-foreground/10 text-xs font-mono">+</div>
-      </div>
+        {/* Subtle grid background */}
+        <div
+            className="absolute inset-0 opacity-[0.03] pointer-events-none"
+            style={{
+                backgroundImage:
+                    "linear-gradient(to right, currentColor 1px, transparent 1px), linear-gradient(to bottom, currentColor 1px, transparent 1px)",
+                backgroundSize: "60px 60px",
+            }}
+        />
 
-      <div className="max-w-[1400px] mx-auto px-6 lg:px-12 relative z-10 w-full pt-28 lg:pt-32">
-        <div className="grid lg:grid-cols-12 gap-8 lg:gap-0 items-end">
-          {/* Left column */}
-          <div className="lg:col-span-7">
+        <div className="max-w-[1400px] mx-auto px-6 lg:px-12 w-full">
             <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 0.3, duration: 0.8 }}
-              className="mb-6"
+                initial={{ opacity: 0, y: 30 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.7, ease: "easeOut" }}
             >
-              <span className="text-[10px] tracking-[0.3em] text-muted-foreground font-medium uppercase">
-                — Full Stack Developer | Java & MERN Stack
-              </span>
+                <p className="text-[10px] tracking-[0.35em] text-muted-foreground font-medium uppercase mb-8">
+                    00 — Full Stack Developer
+                </p>
             </motion.div>
 
-            <div className="overflow-hidden mb-3">
-              <motion.h1
-                initial={{ y: 120 }}
-                animate={{ y: 0 }}
-                transition={{ duration: 1, ease: [0.16, 1, 0.3, 1], delay: 0.4 }}
-                className="font-display text-6xl sm:text-7xl md:text-8xl lg:text-[120px] xl:text-[140px] font-bold leading-[0.85] tracking-tight text-foreground"
-              >
-                <ScrambleText text="Anusha" speed={100} className="inline-block" />
-              </motion.h1>
-            </div>
-            <div className="overflow-hidden mb-8">
-              <motion.h1
-                initial={{ y: 120 }}
-                animate={{ y: 0 }}
-                transition={{ duration: 1, ease: [0.16, 1, 0.3, 1], delay: 0.55 }}
-                className="font-display text-6xl sm:text-7xl md:text-8xl lg:text-[120px] xl:text-[140px] font-bold leading-[0.85] tracking-tight text-foreground"
-              >
-                <ScrambleText text="Jindal" speed={100} className="inline-block" />
-                <span className="text-accent">.</span>
-              </motion.h1>
-            </div>
-
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 1.2 }}
-              className="flex items-center gap-6"
-            >
-              {[
-                { icon: Github, href: "https://github.com/anushajindal2046" },
-                { icon: Linkedin, href: "https://www.linkedin.com/in/anusha-jindal-36959028a" },
-                { icon: Mail, href: "mailto:anushajindal1940@gmail.com" },
-              ].map(({ icon: Icon, href }) => (
-                <a
-                  key={href}
-                  href={href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-muted-foreground hover:text-foreground transition-colors duration-500"
+            <div className="mb-10">
+                <motion.h1
+                    initial={{ opacity: 0, y: 40 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.8, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
+                    className="font-display text-6xl sm:text-7xl lg:text-8xl xl:text-9xl font-bold leading-[0.95] tracking-tight text-foreground"
                 >
-                  <Icon size={18} strokeWidth={1.5} />
-                </a>
-              ))}
-            </motion.div>
-          </div>
+                    <ScrambleText text="Anusha" startDelay={400} />
+                    <br />
+                    <ScrambleText text="Jindal" startDelay={700} />
+                </motion.h1>
+            </div>
 
-          {/* Right column */}
-          <div className="lg:col-span-5 lg:pl-12">
             <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.9, duration: 0.8 }}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.7, delay: 0.4, ease: "easeOut" }}
+                className="flex flex-col sm:flex-row sm:items-end justify-between gap-8 max-w-4xl"
             >
-              <p className="text-[10px] tracking-[0.3em] text-muted-foreground font-medium uppercase mb-4">
-                — Introduction
-              </p>
-              <h2 className="font-display text-xl sm:text-2xl lg:text-3xl font-semibold leading-snug text-foreground mb-4">
-                Java & MERN Stack<br />
-                Enthusiast
-              </h2>
-              <p className="text-sm text-muted-foreground leading-relaxed mb-4 max-w-md">
-                Building scalable, secure, and impactful web applications with expertise in Spring Boot, Node.js, React, and modern system design patterns.
-              </p>
-              <p className="text-xs text-muted-foreground/80 leading-relaxed mb-8 max-w-md">
-                Specializing in microservices architecture, real-time applications, authentication systems, and performance optimization.
-              </p>
-              <a
-                href="#projects"
-                className="inline-flex items-center gap-2 text-accent text-sm font-medium group"
-              >
-                View Projects
-                <ArrowDownRight size={16} className="group-hover:translate-x-1 group-hover:translate-y-1 transition-transform duration-300" />
-              </a>
-            </motion.div>
-          </div>
-        </div>
-      </div>
+                <p className="max-w-md text-sm text-muted-foreground leading-[1.8]">
+                    Building scalable backend systems with Spring Boot &amp; Node.js. Passionate about
+                    microservices, clean architecture, and real-time applications.
+                </p>
 
-      {/* Bottom line */}
-      <motion.div
-        initial={{ scaleX: 0 }}
-        animate={{ scaleX: 1 }}
-        transition={{ delay: 1.5, duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
-        className="absolute bottom-0 left-0 right-0 h-px bg-border origin-left"
-      />
+                <div className="flex items-center gap-4 shrink-0">
+                    <a
+                        href="https://github.com/anushajindal2046"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="p-2.5 border border-border hover:border-foreground/30 text-muted-foreground hover:text-foreground transition-all duration-500"
+                        aria-label="GitHub"
+                    >
+                        <Github size={16} strokeWidth={1.5} />
+                    </a>
+                    <a
+                        href="https://www.linkedin.com/in/anusha-jindal-36959028a"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="p-2.5 border border-border hover:border-foreground/30 text-muted-foreground hover:text-foreground transition-all duration-500"
+                        aria-label="LinkedIn"
+                    >
+                        <Linkedin size={16} strokeWidth={1.5} />
+                    </a>
+                    <a
+                        href="mailto:anushajindal1940@gmail.com"
+                        className="p-2.5 border border-border hover:border-foreground/30 text-muted-foreground hover:text-foreground transition-all duration-500"
+                        aria-label="Email"
+                    >
+                        <Mail size={16} strokeWidth={1.5} />
+                    </a>
+                    <a
+                        href="#about"
+                        className="inline-flex items-center gap-2 px-7 py-3 bg-foreground text-primary-foreground text-[11px] font-semibold tracking-[0.18em] uppercase hover:opacity-90 transition-opacity"
+                    >
+                        View Work
+                    </a>
+                </div>
+            </motion.div>
+        </div>
+
+        {/* Scroll indicator */}
+        <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 1.2, duration: 0.6 }}
+            className="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2"
+        >
+            <motion.div
+                animate={{ y: [0, 6, 0] }}
+                transition={{ repeat: Infinity, duration: 1.6, ease: "easeInOut" }}
+            >
+                <ArrowDown size={16} className="text-muted-foreground/40" strokeWidth={1.5} />
+            </motion.div>
+        </motion.div>
     </section>
-  );
-};
+);
 
 export default HeroSection;

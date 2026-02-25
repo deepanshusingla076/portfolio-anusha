@@ -10,7 +10,7 @@ const highlights = [
 
 
 const AboutSection = () => (
-  <section id="about" className="py-4 lg:py-6 relative">
+  <section id="about" className="py-16 lg:py-20 relative">
     {/* Corner marks */}
     <div className="absolute top-8 left-6 lg:left-12 text-muted-foreground/20 text-xs font-mono">+</div>
     <div className="absolute top-8 right-6 lg:right-12 text-muted-foreground/20 text-xs font-mono">+</div>

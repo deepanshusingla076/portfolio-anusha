@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Phone, Mail, Linkedin, Github, ArrowUpRight } from "lucide-react";
 import AnimatedSection from "./AnimatedSection";
 import { motion } from "framer-motion";
+import { useToast } from "@/hooks/use-toast";
 
 const contactLinks = [
   { icon: Phone, label: "+91-9588575578", href: "tel:+919588575578" },
@@ -12,14 +13,49 @@ const contactLinks = [
 
 const ContactSection = () => {
   const [form, setForm] = useState({ name: "", email: "", message: "" });
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const { toast } = useToast();
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    window.open(`mailto:anushajindal1940@gmail.com?subject=Portfolio Contact from ${form.name}&body=${encodeURIComponent(form.message)}%0A%0AFrom: ${form.email}`);
+    if (isSubmitting) return;
+
+    setIsSubmitting(true);
+
+    try {
+      const endpoint = import.meta.env.VITE_CONTACT_ENDPOINT || "/api/contact";
+
+      const response = await fetch(endpoint, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(form),
+      });
+
+      if (!response.ok) {
+        throw new Error("Failed to send message");
+      }
+
+      toast({
+        title: "Message sent",
+        description: "Thank you for reaching out. I’ll get back to you soon.",
+      });
+
+      setForm({ name: "", email: "", message: "" });
+    } catch (error) {
+      toast({
+        variant: "destructive",
+        title: "Something went wrong",
+        description: "Please try again or email me directly at anushajindal1940@gmail.com.",
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
-    <section id="contact" className="py-10 lg:py-14 border-t border-border relative">
+    <section id="contact" className="py-16 lg:py-20 border-t border-border relative">
       <div className="absolute top-8 left-6 lg:left-12 text-muted-foreground/20 text-xs font-mono">+</div>
       <div className="absolute top-8 right-6 lg:right-12 text-muted-foreground/20 text-xs font-mono">+</div>
 
@@ -32,9 +68,9 @@ const ContactSection = () => {
                 04 — Get In Touch
               </p>
               <h2 className="font-display text-4xl sm:text-5xl lg:text-6xl font-bold text-foreground mb-6">
-               Let’s Connect &
+                Let’s Connect &
                 <br />
-               <span>Collaborate</span>
+                <span>Collaborate</span>
               </h2>
             </AnimatedSection>
 
@@ -110,9 +146,10 @@ const ContactSection = () => {
                 whileHover={{ scale: 1.01 }}
                 whileTap={{ scale: 0.99 }}
                 type="submit"
-                className="w-full py-4 bg-foreground text-primary-foreground text-[11px] font-semibold tracking-[0.2em] uppercase hover:opacity-90 transition-opacity"
+                disabled={isSubmitting}
+                className="w-full py-4 bg-foreground text-primary-foreground text-[11px] font-semibold tracking-[0.2em] uppercase hover:opacity-90 transition-opacity disabled:opacity-60 disabled:cursor-not-allowed"
               >
-                Send Message
+                {isSubmitting ? "Sending..." : "Send Message"}
               </motion.button>
             </form>
           </AnimatedSection>

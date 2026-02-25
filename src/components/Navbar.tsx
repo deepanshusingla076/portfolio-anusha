@@ -5,6 +5,8 @@ import { motion, AnimatePresence } from "framer-motion";
 const navLinks = [
   { label: "HOME", href: "#home" },
   { label: "ABOUT", href: "#about" },
+  { label: "EDUCATION", href: "#education" },
+  { label: "EXPERIENCE", href: "#experience" },
   { label: "PROJECTS", href: "#projects" },
   { label: "SKILLS", href: "#skills" },
   { label: "CONTACT", href: "#contact" },
@@ -30,14 +32,12 @@ const Navbar = () => {
       initial={{ y: -100 }}
       animate={{ y: 0 }}
       transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
-        scrolled ? "glass-dark" : "bg-transparent"
-      }`}
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${scrolled ? "glass-dark" : "bg-transparent"
+        }`}
     >
       <div className="max-w-[1400px] mx-auto px-6 lg:px-12">
         <div className="flex items-center justify-between h-20">
           <a href="#home" className="font-display italic text-xl tracking-wide text-foreground">
-            Anusha
           </a>
 
           <div className="hidden lg:flex items-center gap-10">
@@ -55,7 +55,7 @@ const Navbar = () => {
           <div className="hidden lg:flex items-center gap-4">
             <motion.button
               whileTap={{ scale: 0.9 }}
-              onClick={() => setIsDark(!isDark)}
+              onClick={() => setIsDark((prev) => !prev)}
               className="relative w-14 h-7 rounded-full bg-secondary border border-border flex items-center px-1 cursor-pointer transition-colors duration-500"
               aria-label="Toggle theme"
             >
@@ -91,7 +91,7 @@ const Navbar = () => {
           <div className="flex lg:hidden items-center gap-3">
             <motion.button
               whileTap={{ scale: 0.9 }}
-              onClick={() => setIsDark(!isDark)}
+              onClick={() => setIsDark((prev) => !prev)}
               className="relative w-12 h-6 rounded-full bg-secondary border border-border flex items-center px-0.5 cursor-pointer"
             >
               <motion.div

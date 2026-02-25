@@ -2,19 +2,22 @@ import { GraduationCap } from "lucide-react";
 import AnimatedSection from "./AnimatedSection";
 
 const education = [
-  { degree: "Bachelor of Engineering — Chitkara University", year: "2023–Present", score: "CGPA: 8.62" },
-  { degree: "XII — GMSSS Sec-16D, Chandigarh", year: "2023", score: "82.2%" },
-  { degree: "X — Amravati Vidyalaya, Panchkula", year: "2021", score: "94.6%" },
+  { degree: "Bachelor of Engineering", institution: "Chitkara University", year: "2023–Present", score: "CGPA: 8.62" },
+  { degree: "Class XII", institution: "GMSSS Sec-16D, Chandigarh", year: "2023", score: "82.2%" },
+  { degree: "Class X", institution: "Amravati Vidyalaya, Panchkula", year: "2021", score: "94.6%" },
 ];
 
 const EducationSection = () => (
-  <section id="education" className="py-10 lg:py-14 relative">
+  <section id="education" className="py-16 lg:py-20 border-t border-border relative">
     <div className="max-w-[1400px] mx-auto px-6 lg:px-12">
       <AnimatedSection>
-        <div className="flex items-center gap-3 mb-6">
-          <GraduationCap size={18} className="text-accent" strokeWidth={1.5} />
-          <h3 className="text-[10px] tracking-[0.3em] text-muted-foreground font-medium uppercase">Academic Background</h3>
-        </div>
+        <p className="text-[10px] tracking-[0.3em] text-muted-foreground font-medium uppercase mb-4 flex items-center gap-2">
+          <GraduationCap size={14} className="text-accent" strokeWidth={1.5} />
+          05 — Education
+        </p>
+        <h2 className="font-display text-4xl sm:text-5xl lg:text-6xl font-bold text-foreground mb-12">
+          Academic<br /><span>Background</span>
+        </h2>
       </AnimatedSection>
 
       <AnimatedSection delay={0.12}>
@@ -22,13 +25,16 @@ const EducationSection = () => (
           {education.map((edu, i) => (
             <div
               key={i}
-              className="flex justify-between items-start py-6 border-b border-border group hover:bg-card/50 transition-colors duration-300 px-3"
+              className="flex flex-col sm:flex-row sm:items-center sm:justify-between py-7 border-b border-border group hover:bg-card/50 transition-colors duration-300 px-3 gap-3"
             >
               <div className="flex-1">
-                <p className="text-sm font-semibold text-foreground leading-snug">{edu.degree}</p>
-                <p className="text-xs text-muted-foreground mt-2">{edu.year}</p>
+                <p className="text-base font-semibold text-foreground leading-snug">{edu.degree}</p>
+                <p className="text-sm text-muted-foreground mt-1">{edu.institution}</p>
+                <p className="text-[11px] text-muted-foreground/70 mt-0.5 font-mono">{edu.year}</p>
               </div>
-              <span className="text-accent text-xs font-mono font-bold ml-4 whitespace-nowrap">{edu.score}</span>
+              <span className="inline-flex items-center px-3 py-1 text-sm text-accent font-bold font-mono bg-accent/10 border border-accent/30 rounded-full whitespace-nowrap">
+                {edu.score}
+              </span>
             </div>
           ))}
         </div>
